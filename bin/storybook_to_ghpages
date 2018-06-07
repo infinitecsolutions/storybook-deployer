@@ -6,9 +6,11 @@ var path = require('path');
 var packageJson = require(path.resolve('./package.json'));
 var argv = require('yargs').argv;
 var parseRepo = require('parse-repo');
+var fs = require('fs');
 
-var SKIP_BUILD = Boolean(argv['existing-output-dir'])
-var OUTPUT_DIR = argv['existing-output-dir'] || 'out' + Math.ceil(Math.random() * 9999);
+var SKIP_BUILD = Boolean(argv['skip-build'])
+var OUTPUT_DIR = argv['output-dir'] || 'out' + Math.ceil(Math.random() * 9999);
+var OUTPUT_DIR_EXISTS = fs.existsSync(OUTPUT_DIR);
 
 var defaultConfig = {
   gitUsername: 'GH Pages Bot',
@@ -34,7 +36,7 @@ if (!GIT_URL) {
   process.exit(-1);
 }
 
-if (!SKIP_BUILD) {
+if (!SKIP_BUILD || !OUTPUT_DIR_EXISTS) {
   // clear and re-create the out directory
   shell.rm('-rf', OUTPUT_DIR);
   shell.mkdir(OUTPUT_DIR);

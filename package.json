@@ -1,5 +1,5 @@
 {
-  "name": "@storybook/storybook-deployer",
+  "name": "@infinitecsolutions/storybook-deployer",
   "version": "2.3.0",
   "description": "Deploy your storybook as a webapp.",
   "keywords": [

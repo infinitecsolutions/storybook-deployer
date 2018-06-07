@@ -35,12 +35,21 @@ If you customize the build configuration with some additional params (like stati
 
 > Make sure to set the output directory as **`.out`**.
 
-### Skip Build Step
+### Customize output dir
 
 If you have previously built your storybook output (through a different CI step, etc) and just need to publish it, specify the directory like this:
 
 ```sh
-npm run deploy-storybook -- --existing-output-dir=.out
+npm run deploy-storybook -- --output-dir=.out
+```
+
+### Skip Build Step
+
+If you want to skip storybook build, use the `skip-build` flag. Keep in mind that it's required to
+provide `output-dir` with a valid build:
+
+```sh
+npm run deploy-storybook -- --skip-build --output-dir=.out
 ```
 
 ### Deploying Storybook as part of a CI service
